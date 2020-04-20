@@ -1,3 +1,7 @@
+Ĉi tio estas adapto de la [originala retejo](http://ninjabunny.github.io/KodeNames/) al Esperanto.
+
+---
+
 Donate to my Patreon https://www.patreon.com/bunnydoctor
 
 # KodeNames

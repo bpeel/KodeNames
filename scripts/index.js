@@ -24,10 +24,6 @@ $("#seed").keyup(function () {
   fire()
 })
 
-$("#gameMode").change(function () {
-  fire()
-})
-
 $("#seed").val(Math.floor(Math.random() * 1000))
 fire()
 
@@ -36,33 +32,7 @@ function fire() {
   var seed = document.getElementById("seed").value
   Math.seedrandom(seed.toLowerCase())
 
-  var option = $("#gameMode :selected").val()
-  switch (option) {
-    case "spanish":
-      sessionData = spanishData.slice(0)
-      break
-    case "french":
-      sessionData = frenchData.slice(0)
-      break
-    case "2knouns":
-      sessionData = data.slice(0)
-      break
-    case "movies":
-      sessionData = movieData.slice(0)
-      break
-    case "custom":
-      if (customData.length === 0) {
-        var customWordList = prompt(
-          "Please enter custom word list. The list will be saved until your refresh your browser. (The words MUST be delimanted by spaces). eg: cat dog mouse",
-          "Enter words here"
-        )
-        customData = customWordList.split(" ")
-      }
-      sessionData = customData.slice(0)
-      break
-    default:
-      sessionData = defaultData.slice(0)
-  }
+  sessionData = defaultData.slice(0)
 
   wordsSelected = []
   teams = []
@@ -90,7 +60,7 @@ function createNewGame() {
   }
 
   // one extra for one of the teams
-  if (Math.floor(Math.random() * data.length) % 2 === 0) {
+  if (Math.floor(Math.random() * defaultData.length) % 2 === 0) {
     teams.push("red")
     // document.getElementById("team").style.color = COLOR_RED;
     // document.getElementById("team").innerHTML = "RED";
@@ -152,7 +122,7 @@ function clicked(value) {
     //guessers mode
     var word = wordsSelected[value]
     if (document.getElementById("confirm").checked) {
-      if (window.confirm("Are sure you want to select '" + word + "'?")) {
+      if (window.confirm("Ĉu vi certas ke vi volas elekti '" + word + "'?")) {
         document.getElementById(value).style.backgroundColor =
           colors[teams[value]]
         if (colors[teams[value]] == "black") {
@@ -205,10 +175,10 @@ function updateScore() {
   $("#redScore").text(redScore)
   $("#blueScore").text(blueScore)
   if (redScore === 0) {
-    $("#redScore").text("Winner!")
+    $("#redScore").text("Venkinto!")
   }
   if (blueScore === 0) {
-    $("#blueScore").text("Winner!")
+    $("#blueScore").text("Venkinto!")
   }
 }
 
